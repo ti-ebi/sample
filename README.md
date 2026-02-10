@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```python
-from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime, fibonacci
+from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime, fibonacci, gcd
 
 # Use the greeting function
 message = greet("World")
@@ -58,6 +58,10 @@ print(is_prime(20))  # Output: False
 # Calculate Fibonacci numbers
 print(fibonacci(10))  # Output: 55
 print(fibonacci(15))  # Output: 610
+
+# Calculate the Greatest Common Divisor
+print(gcd(48, 18))  # Output: 6
+print(gcd(100, 50))  # Output: 50
 ```
 
 ## Running Tests

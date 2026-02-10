@@ -165,3 +165,49 @@ def fibonacci(n: int) -> int:
         prev, curr = curr, prev + curr
 
     return curr
+
+
+def gcd(a: int, b: int) -> int:
+    """
+    Calculate the Greatest Common Divisor (GCD) of two integers.
+
+    The GCD of two integers is the largest positive integer that divides both
+    numbers without a remainder. This implementation uses the Euclidean algorithm,
+    which is efficient and works for both positive and negative integers.
+
+    Args:
+        a: First integer.
+        b: Second integer.
+
+    Returns:
+        The GCD of a and b (always non-negative).
+
+    Raises:
+        TypeError: If either argument is not an integer.
+        ValueError: If both arguments are zero.
+
+    Examples:
+        >>> gcd(48, 18)
+        6
+        >>> gcd(100, 50)
+        50
+        >>> gcd(17, 19)
+        1
+        >>> gcd(0, 5)
+        5
+    """
+    if not isinstance(a, int):
+        raise TypeError(f"gcd() first argument must be an integer, not {type(a).__name__}")
+    if not isinstance(b, int):
+        raise TypeError(f"gcd() second argument must be an integer, not {type(b).__name__}")
+    if a == 0 and b == 0:
+        raise ValueError("gcd(0, 0) is not defined")
+
+    # Convert to absolute values to handle negative numbers
+    a, b = abs(a), abs(b)
+
+    # Euclidean algorithm
+    while b != 0:
+        a, b = b, a % b
+
+    return a

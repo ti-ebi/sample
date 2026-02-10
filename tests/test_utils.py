@@ -6,7 +6,7 @@ from pathlib import Path
 # Add src to path so we can import the module
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime, fibonacci
+from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime, fibonacci, gcd
 
 
 def test_greet():
@@ -181,3 +181,92 @@ def test_fibonacci_non_integer():
         fibonacci("5")
     with pytest.raises(TypeError, match="must be an integer"):
         fibonacci([5])
+
+
+def test_gcd_basic_cases():
+    """Test gcd with basic positive integer cases."""
+    # Classic examples
+    assert gcd(48, 18) == 6
+    assert gcd(18, 48) == 6  # Order shouldn't matter
+    assert gcd(100, 50) == 50
+    assert gcd(50, 100) == 50
+
+    # Coprime numbers (GCD = 1)
+    assert gcd(17, 19) == 1
+    assert gcd(13, 17) == 1
+    assert gcd(7, 11) == 1
+
+    # Same numbers
+    assert gcd(42, 42) == 42
+    assert gcd(1, 1) == 1
+
+
+def test_gcd_with_zero():
+    """Test gcd when one argument is zero."""
+    # GCD of any number with 0 is the absolute value of that number
+    assert gcd(0, 5) == 5
+    assert gcd(5, 0) == 5
+    assert gcd(0, 100) == 100
+    assert gcd(100, 0) == 100
+
+
+def test_gcd_with_one():
+    """Test gcd with 1 as one of the arguments."""
+    # GCD with 1 is always 1
+    assert gcd(1, 5) == 1
+    assert gcd(5, 1) == 1
+    assert gcd(1, 100) == 1
+    assert gcd(100, 1) == 1
+
+
+def test_gcd_negative_numbers():
+    """Test gcd with negative numbers."""
+    # GCD should handle negative numbers and return positive result
+    assert gcd(-48, 18) == 6
+    assert gcd(48, -18) == 6
+    assert gcd(-48, -18) == 6
+    assert gcd(-100, -50) == 50
+
+
+def test_gcd_large_numbers():
+    """Test gcd with larger numbers."""
+    assert gcd(1071, 462) == 21
+    assert gcd(12345, 54321) == 3
+    assert gcd(1000000, 500000) == 500000
+
+
+def test_gcd_powers_of_two():
+    """Test gcd with powers of two."""
+    assert gcd(16, 8) == 8
+    assert gcd(64, 32) == 32
+    assert gcd(128, 256) == 128
+    assert gcd(1024, 512) == 512
+
+
+def test_gcd_both_zero():
+    """Test that gcd raises ValueError when both arguments are zero."""
+    import pytest
+    with pytest.raises(ValueError, match="gcd\\(0, 0\\) is not defined"):
+        gcd(0, 0)
+
+
+def test_gcd_non_integer_first_arg():
+    """Test that gcd raises TypeError when first argument is not an integer."""
+    import pytest
+    with pytest.raises(TypeError, match="first argument must be an integer"):
+        gcd(3.5, 5)
+    with pytest.raises(TypeError, match="first argument must be an integer"):
+        gcd("10", 5)
+    with pytest.raises(TypeError, match="first argument must be an integer"):
+        gcd([10], 5)
+
+
+def test_gcd_non_integer_second_arg():
+    """Test that gcd raises TypeError when second argument is not an integer."""
+    import pytest
+    with pytest.raises(TypeError, match="second argument must be an integer"):
+        gcd(5, 3.5)
+    with pytest.raises(TypeError, match="second argument must be an integer"):
+        gcd(5, "10")
+    with pytest.raises(TypeError, match="second argument must be an integer"):
+        gcd(5, [10])
