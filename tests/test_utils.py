@@ -6,7 +6,7 @@ from pathlib import Path
 # Add src to path so we can import the module
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime
+from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime, fibonacci
 
 
 def test_greet():
@@ -134,3 +134,50 @@ def test_is_prime_non_integer():
         is_prime("5")
     with pytest.raises(TypeError, match="must be an integer"):
         is_prime([5])
+
+
+def test_fibonacci_base_cases():
+    """Test fibonacci with base cases."""
+    assert fibonacci(0) == 0
+    assert fibonacci(1) == 1
+    assert fibonacci(2) == 1
+
+
+def test_fibonacci_small_numbers():
+    """Test fibonacci with small numbers."""
+    assert fibonacci(3) == 2
+    assert fibonacci(4) == 3
+    assert fibonacci(5) == 5
+    assert fibonacci(6) == 8
+    assert fibonacci(7) == 13
+    assert fibonacci(8) == 21
+    assert fibonacci(9) == 34
+    assert fibonacci(10) == 55
+
+
+def test_fibonacci_larger_numbers():
+    """Test fibonacci with larger numbers."""
+    assert fibonacci(15) == 610
+    assert fibonacci(20) == 6765
+    assert fibonacci(25) == 75025
+    assert fibonacci(30) == 832040
+
+
+def test_fibonacci_negative():
+    """Test that fibonacci raises ValueError for negative inputs."""
+    import pytest
+    with pytest.raises(ValueError, match="not defined for negative values"):
+        fibonacci(-1)
+    with pytest.raises(ValueError, match="not defined for negative values"):
+        fibonacci(-10)
+
+
+def test_fibonacci_non_integer():
+    """Test that fibonacci raises TypeError for non-integer inputs."""
+    import pytest
+    with pytest.raises(TypeError, match="must be an integer"):
+        fibonacci(3.5)
+    with pytest.raises(TypeError, match="must be an integer"):
+        fibonacci("5")
+    with pytest.raises(TypeError, match="must be an integer"):
+        fibonacci([5])

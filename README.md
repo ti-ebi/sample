@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```python
-from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime
+from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime, fibonacci
 
 # Use the greeting function
 message = greet("World")
@@ -54,6 +54,10 @@ print(fact)  # Output: 120
 # Check if a number is prime
 print(is_prime(17))  # Output: True
 print(is_prime(20))  # Output: False
+
+# Calculate Fibonacci numbers
+print(fibonacci(10))  # Output: 55
+print(fibonacci(15))  # Output: 610
 ```
 
 ## Running Tests
