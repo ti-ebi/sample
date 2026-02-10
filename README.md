@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```python
-from sample.utils import greet, add_numbers, multiply_numbers, factorial
+from sample.utils import greet, add_numbers, multiply_numbers, factorial, is_prime
 
 # Use the greeting function
 message = greet("World")
@@ -50,6 +50,10 @@ print(product)  # Output: 28
 # Calculate factorial
 fact = factorial(5)
 print(fact)  # Output: 120
+
+# Check if a number is prime
+print(is_prime(17))  # Output: True
+print(is_prime(20))  # Output: False
 ```
 
 ## Running Tests

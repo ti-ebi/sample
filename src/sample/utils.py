@@ -72,3 +72,51 @@ def factorial(n: int) -> int:
     for i in range(2, n + 1):
         result *= i
     return result
+
+
+def is_prime(n: int) -> bool:
+    """
+    Check if a number is prime.
+
+    A prime number is a natural number greater than 1 that has no positive
+    divisors other than 1 and itself. For example, 2, 3, 5, 7, 11 are prime.
+
+    Args:
+        n: An integer to check for primality.
+
+    Returns:
+        True if n is prime, False otherwise.
+
+    Raises:
+        TypeError: If n is not an integer.
+
+    Examples:
+        >>> is_prime(2)
+        True
+        >>> is_prime(17)
+        True
+        >>> is_prime(4)
+        False
+        >>> is_prime(1)
+        False
+    """
+    if not isinstance(n, int):
+        raise TypeError(f"is_prime() argument must be an integer, not {type(n).__name__}")
+
+    if n < 2:
+        return False
+
+    if n == 2:
+        return True
+
+    if n % 2 == 0:
+        return False
+
+    # Check odd divisors up to sqrt(n)
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+
+    return True
