@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```python
-from sample.utils import greet, add_numbers
+from sample.utils import greet, add_numbers, multiply_numbers, factorial
 
 # Use the greeting function
 message = greet("World")
@@ -43,6 +43,13 @@ print(message)  # Output: Hello, World!
 # Perform calculations
 result = add_numbers(5, 3)
 print(result)  # Output: 8
+
+product = multiply_numbers(4, 7)
+print(product)  # Output: 28
+
+# Calculate factorial
+fact = factorial(5)
+print(fact)  # Output: 120
 ```
 
 ## Running Tests
